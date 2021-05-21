@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Riya Web Worker</title>
+</head>
+
+
+<body>
+    Enter Number: &emsp;&emsp; <input type="number" id="inputData">
+
+    <button onclick="start()">Start Worker</button>
+
+
+    <script>
+        var worker = new Worker('worker.js');
+
+        function start() {
+            var data = document.getElementById('inputData').value;
+
+            worker.postMessage(data);
+            worker.onmessage = function(e) {
+
+                if (e.data === 'DONE') {
+                    alert(e.data);
+                } else {
+                    console.log(e.data);
+                }
+
+            }
+
+
+
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>
